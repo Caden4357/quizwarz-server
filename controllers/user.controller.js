@@ -16,7 +16,6 @@ async function registerUser(req, res) {
         }
     }
     catch (err) {
-        console.log(err);
         res.status(400).json(err)
     }
 }
@@ -24,7 +23,6 @@ async function registerUser(req, res) {
 async function loginUser(req, res) {
     try {
         const user = await User.findOne({ email: req.body.email })
-        console.log(req.body, user);
         if (user) {
             const passwordsMatch = await bcrypt.compare(req.body.password, user.password)
             if (passwordsMatch) {
