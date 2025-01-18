@@ -47,4 +47,13 @@ async function logoutUser(req, res) {
     res.clearCookie('userToken')
     res.status(200).json({ message: 'Logged Out Successfully' })
 }
-export { registerUser, loginUser, logoutUser }
+async function getAllUsers(req, res) {
+    try {
+        const users = await User.find()
+        res.status(200).json(users)
+    }
+    catch (err) {
+        res.status(400).json({ error: err })
+    }
+}
+export { registerUser, loginUser, logoutUser, getAllUsers }
