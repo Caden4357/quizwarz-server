@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 const app = express();
 dotenv.config();
 dbConnect();
-app.use(express.json(), cors({credentials:true, origin: 'http://localhost:5173'}));
+app.use(express.json(), cors({credentials:true, origin: 'https://quizwarz-server.onrender.com'}));
 app.use(cookieParser());
 app.use('/api', userRoutes);
 app.use('/api', quizRoutes)
