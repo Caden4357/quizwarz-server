@@ -7,9 +7,9 @@ async function dbConnect() {
         await connect(MONGODB_URI, {
             dbName: 'quizwarz',
         });
-        console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        // console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         throw error;
     }
 }

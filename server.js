@@ -16,6 +16,6 @@ app.use('/api', quizRoutes)
 
 
 app.listen(PORT, () =>
-    console.log(`Listening on port: ${PORT}`)
+    console.log(`Running`)
 );
 

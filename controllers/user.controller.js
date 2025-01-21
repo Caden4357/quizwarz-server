@@ -3,7 +3,6 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 const SECRET = process.env.SECRET_KEY
 async function registerUser(req, res) {
-    console.log(req.body);
     try {
         const potentialUser = await User.findOne({ email: req.body.email })
         if (potentialUser) {
