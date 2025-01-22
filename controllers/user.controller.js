@@ -41,11 +41,12 @@ async function loginUser(req, res) {
     }
 }
 async function logoutUser(req, res) {
-    res.clearCookie('userToken')
+    res.clearCookie()
     res.status(200).json({ message: 'Logged Out Successfully' })
 }
 async function getAllUsers(req, res) {
     try {
+        console.log('LINE 7', req.cookies);
         const users = await User.find()
         res.status(200).json(users)
     }
