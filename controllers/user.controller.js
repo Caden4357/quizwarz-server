@@ -10,8 +10,7 @@ async function registerUser(req, res) {
         }
         else {
             const newUser = await User.create(req.body)
-            const userToken = jwt.sign({ _id: newUser._id, email: newUser.email }, SECRET, { expiresIn: '2h' })
-            res.status(201).cookie('userToken', userToken, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 }).json(newUser)
+            res.status(201).json(newUser)
         }
     }
     catch (err) {
@@ -25,8 +24,7 @@ async function loginUser(req, res) {
         if (user) {
             const passwordsMatch = await bcrypt.compare(req.body.password, user.password)
             if (passwordsMatch) {
-                const userToken = jwt.sign({ _id: user._id, email: user.email }, SECRET, { expiresIn: '2h' })
-                res.status(201).cookie('userToken', userToken, { httpOnly: true, maxAge: 2 * 60 * 60 * 1000 }).json(user)
+                res.status(201).json(user)
             }
             else {
                 res.status(400).json({ message: 'Invalid Email/Password' })
@@ -41,12 +39,10 @@ async function loginUser(req, res) {
     }
 }
 async function logoutUser(req, res) {
-    res.clearCookie()
     res.status(200).json({ message: 'Logged Out Successfully' })
 }
 async function getAllUsers(req, res) {
     try {
-        console.log('LINE 7', req.cookies);
         const users = await User.find()
         res.status(200).json(users)
     }

@@ -9,7 +9,7 @@ const PORT = process.env.PORT;
 const app = express();
 dotenv.config();
 dbConnect();
-app.use(express.json(), cors({credentials:true, origin: ['https://quizwarz-client-hh24.vercel.app', 'http://localhost:5173']}));
+app.use(express.json(), cors({ origin: ['https://quizwarz-client-hh24.vercel.app', 'http://localhost:5173']}));
 app.use(cookieParser());
 app.use('/api', userRoutes);
 app.use('/api', quizRoutes)
