@@ -4,10 +4,6 @@ const SECRET = process.env.SECRET_KEY;
 
 async function createQuiz(req, res) {
     try {
-        console.log(req.cookies);
-        const token = req.cookies.userToken;
-        const decoded = jwt.verify(token, SECRET);
-        req.body.user = decoded._id;
         const newQuiz = await Quiz.create(req.body);
         res.status(201).json(newQuiz);
     }
