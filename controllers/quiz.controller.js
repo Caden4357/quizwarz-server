@@ -4,6 +4,7 @@ const SECRET = process.env.SECRET_KEY;
 
 async function createQuiz(req, res) {
     try {
+        console.log(req.body);
         const newQuiz = await Quiz.create(req.body);
         res.status(201).json(newQuiz);
     }
@@ -13,9 +14,8 @@ async function createQuiz(req, res) {
 }
 async function getUsersQuizzes(req, res) {
     try {
-        const token = req.cookies.userToken;
-        const decoded = jwt.verify(token, SECRET);
-        const quizzes = await Quiz.find({ user: decoded._id });
+        console.log(req.params.id);
+        const quizzes = await Quiz.find({ user: req.params.id });
         res.status(200).json(quizzes);
     }
     catch (err) {
